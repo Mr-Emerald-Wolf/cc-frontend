@@ -5,29 +5,23 @@ export default function Navbar({ fixed }) {
     const [navbarOpen, setNavbarOpen] = React.useState(false);
     return (
         <>
-            <header className="bg-slate-800 z-50 top-0 md:sticky">
+            <header className="bg-pastel z-50 top-0 md:sticky">
                 <div className="container flex justify-between mx-auto">
-                    <Link rel="noopener noreferrer" to="/" aria-label="Back to homepage" className="flex items-center p-1 md:font-bold text-3xl text-red-500">
+                    <Link rel="noopener noreferrer" to="/" aria-label="Back to homepage" className="flex items-center p-1 md:font-bold text-3xl text-lavender">
                         Q8
                     </Link>
                     <div className="flex flex-grow items-center justify-end"></div>
                     <ul className="items-stretch hidden space-x-3 lg:flex">
                         <li className="flex">
-                            <a rel="noopener noreferrer" href="#app" className="flex items-center px-4 -mb-1 text-red-500 hover:text-red-400 font-Kanit">APP</a>
+                            <Link rel="noopener noreferrer" to="/login" className="flex items-center px-4 -mb-1 font-bold text-violet hover:text-lavender font-Kanit">Sign In</Link>
                         </li>
                         <li className="flex">
-                            <a rel="noopener noreferrer" href="#tech" className="flex items-center px-4 -mb-1 text-red-500 hover:text-red-400 tracking-wide font-light  font-Kanit">TECH USED</a>
+                            <a rel="noopener noreferrer" href="#tech" className="flex items-center px-4 -mb-1 text-violet hover:text-lavender tracking-wide font-light  font-Kanit">Orders</a>
                         </li>
                         <li className="flex">
-                            <a rel="noopener noreferrer" href="#roadmap" className="flex items-center px-4 -mb-1 text-red-500 hover:text-red-400  font-Kanit">ROAD MAP</a>
+                            <a rel="noopener noreferrer" href="#roadmap" className="flex items-center px-4 -mb-1 text-violet hover:text-lavender  font-Kanit">Your Cart</a>
                         </li>
-                        <li className="flex">
-                            <a rel="noopener noreferrer" href="#challenges" className="flex items-center px-4 -mb-1 text-red-500 hover:text-red-400  font-Kanit">CHALLENGES FACED</a>
-                        </li>
-
-                        <li className="flex">
-                            <a rel="noopener noreferrer" href="#about" className="flex items-center px-4 -mb-1 text-red-500 hover:text-red-400  font-Kanit">ABOUT US</a>
-                        </li>
+                       
                     </ul>
 
 
@@ -43,11 +37,11 @@ export default function Navbar({ fixed }) {
 
                 <div className="lg:hidden">
                     <ul className={(navbarOpen ? "grid grid-cols-1" : "hidden")}>
-                        <li ><a className="block p-4  transition  duration-300 bg-slate-700 hover:bg-slate-800 text-red-500" href="#app">App</a></li>
-                        <li ><a className="block text-sm p-4  transition  duration-300 bg-slate-600 hover:bg-slate-800 text-red-500" href="#tech">Tech Used</a></li>
-                        <li ><a className="block text-sm  p-4  transition  duration-300 bg-slate-700 hover:bg-slate-800 text-red-500" href="#roadmap">Road Map</a></li>
-                        <li><a className="block  text-sm p-4  transition  duration-300 bg-slate-600  hover:bg-slate-800 text-red-500" href="#challenges">Challenges Faced</a></li>
-                        <li><a className="block  text-sm p-4  transition  duration-300 bg-slate-700  hover:bg-slate-800 text-red-500" href="#about">About Us</a></li>
+                        <li ><a className="block p-4  transition  duration-300 bg-slate-700 hover:bg-slate-800 text-violet" href="#app">App</a></li>
+                        <li ><a className="block text-sm p-4  transition  duration-300 bg-slate-600 hover:bg-slate-800 text-violet" href="#tech">Tech Used</a></li>
+                        <li ><a className="block text-sm  p-4  transition  duration-300 bg-slate-700 hover:bg-slate-800 text-violet" href="#roadmap">Road Map</a></li>
+                        <li><a className="block  text-sm p-4  transition  duration-300 bg-slate-600  hover:bg-slate-800 text-violet" href="#challenges">Challenges Faced</a></li>
+                        <li><a className="block  text-sm p-4  transition  duration-300 bg-slate-700  hover:bg-slate-800 text-violet" href="#about">About Us</a></li>
 
                     </ul>
                 </div>
