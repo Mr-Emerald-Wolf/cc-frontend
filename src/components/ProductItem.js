@@ -1,10 +1,12 @@
 import React from 'react'
 import { useStore } from '../store'
-
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function ProductItem(props) {
     const addProduct = useStore((state) => state.addProduct)
     const products = useStore((state) => state.products)
+    const notify = () => toast(props.title+" added to Cart");
+
     // addProduct(products)
     const Add = async (e) => {
         e.preventDefault();
@@ -14,16 +16,17 @@ export default function ProductItem(props) {
             "imgUrl": props.imageURL,
             "productPrice": props.price
         })
+        notify();
         addProduct(products);
         console.log(products);
 
     }
     return (
         <>
+        <Toaster />
             <div className="max-w-sm rounded-lg shadow-lg">
 
                 <img src={props.imageURL} className="rounded-t-lg" alt="" />
-
                 <div className="p-5">
                     <a href="/#">
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-pink-800 ">{props.title}</h5>
