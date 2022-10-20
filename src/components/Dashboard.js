@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
-    const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const setData = useStore((state) => state.setData)
     const data = useStore((state) => state.data)
@@ -19,27 +18,33 @@ const Dashboard = () => {
 
     useEffect(() => {
         getUsers();
-    }, []);
-    const apiUrl = 'http://localhost:3001';
+    },[]);
 
-    axios.interceptors.request.use(
-        config => {
-            const { origin } = new URL(config.url);
-            const allowedOrigins = [apiUrl];
-            const token = localStorage.getItem('token');
-            if (allowedOrigins.includes(origin)) {
-                config.headers.authorization = `Bearer ${token}`;
-            }
-            return config;
-        },
-        error => {
-            return Promise.reject(error);
-        }
-    );
+    const token = localStorage.getItem('token');
+    
+    // const apiUrl = 'http://localhost:3001';
+    // axios.interceptors.request.use(
+    //     config => {
+    //         const { origin } = new URL(config.url);
+    //         const allowedOrigins = [apiUrl];
+    //         // console.log(token);
+    //         if (allowedOrigins.includes(origin)) {
+    //             config.headers.authorization = `Bearer ${token}`;
+    //         }
+    //         return config;
+    //     },
+    //     error => {
+    //         return Promise.reject(error);
+    //     }
+    // );
+    
     const getUsers = async () => {
         var config = {
             method: 'get',
             url: 'http://localhost:3001/users/finduser',
+            headers: { 
+                'authorization': `Bearer ${token}`, 
+              }
         };
 
         axios(config)

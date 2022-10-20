@@ -24,9 +24,9 @@ export default function ProductItem(props) {
     return (
         <>
         <Toaster />
-            <div className="max-w-sm rounded-lg shadow-lg">
+            <div className="max-w-sm rounded-lg shadow-lg bg-white">
 
-                <img src={props.imageURL} className="rounded-t-lg" alt="" />
+                <img src={props.imageURL} className="rounded-t-lg h-80" alt="" />
                 <div className="p-5">
                     <a href="/#">
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-pink-800 ">{props.title}</h5>

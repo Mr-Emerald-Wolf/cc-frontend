@@ -60,9 +60,9 @@ export default function ProductItem(props) {
     return (
         <>
              <Toaster />
-            <div className="max-w-sm rounded-lg shadow-lg">
+            <div className="max-w-sm rounded-lg shadow-lg bg-white">
 
-                <img src={props.imageURL} className="rounded-t-lg" alt="" />
+                <img src={props.imageURL} className="rounded-t-lg h-80" alt="" />
 
                 <div className="p-5">
                     <a href="/#">

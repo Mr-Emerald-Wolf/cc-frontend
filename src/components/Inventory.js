@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 export default function Inventory() {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const addItem = () => toast(name+" added to Inventory");
+    const addItem = () => toast(name + " added to Inventory");
 
 
 
@@ -81,7 +81,19 @@ export default function Inventory() {
     return (
         <>
             <Toaster />
-            <section className='bg-slate-100 p-3'>
+            <section className="bg-slate-100 p-3">
+                <div className="p-[2rem]">
+                    <h1 className="New Products text-4xl text-lavender text-center font-bold">All Products in Inventory</h1>
+                </div>
+                <div className="p-6 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mx-auto">
+
+                    {!loading && data.map((element) => {
+                        return (<InventoryItem key={element.productName} description={element.productDesc} title={element.productName} price={element.productPrice} imageURL={element.imgUrl} reload={setData} />)
+                    })}
+
+                </div>
+            </section>
+            <section className='bg-slate-100 p-4'>
                 {/* <!-- component --> */}
                 <div class="bg-grey-lighter flex flex-col">
                     <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
@@ -124,18 +136,6 @@ export default function Inventory() {
                         </div>
 
                     </div>
-                </div>
-            </section>
-            <section className="bg-slate-100 min-h-screen">
-                <div className="p-[2rem]">
-                    <h1 className="New Products text-4xl text-lavender text-center font-bold">All Products in Inventory</h1>
-                </div>
-                <div className="p-6 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mx-auto">
-
-                    {!loading && data.map((element) => {
-                        return (<InventoryItem key={element.productName} description={element.productDesc} title={element.productName} price={element.productPrice} imageURL={element.imgUrl} reload={setData} />)
-                    })}
-
                 </div>
             </section>
         </>

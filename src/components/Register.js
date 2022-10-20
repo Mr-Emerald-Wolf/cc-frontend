@@ -10,30 +10,31 @@ export default function Register() {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [role, setRole] = useState('');
 
     let navigate = useNavigate();
 
 
     const Auth = async (e) => {
-        
+
         try {
             var data = JSON.stringify({
                 "firstName": firstName,
                 "lastName": lastName,
                 "email": email,
                 "password": password,
-                "role": "admin"
+                "role": role
             });
-            
+
             var config = {
                 method: 'post',
                 url: 'http://localhost:3001/users/createUser',
-                headers: { 
-                  'Content-Type': 'application/json'
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                data : data
-              };
-            
+                data: data
+            };
+
 
             axios(config)
                 .then(function (response) {
@@ -81,6 +82,12 @@ export default function Register() {
                                 name="email"
                                 value={email} onChange={(e) => setEmail(e.target.value)}
                                 placeholder="Email" />
+                            <input
+                                type="text"
+                                class="block border border-grey-light w-full p-3 rounded mb-4"
+                                name="role"
+                                value={role} onChange={(e) => setRole(e.target.value)}
+                                placeholder="Role" />
 
                             <input
                                 type="password"
@@ -101,7 +108,7 @@ export default function Register() {
                                         <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" />
                                     </svg>
                                 </span>
-                               Create Account
+                                Create Account
                             </button>
 
                             <div class="text-center text-sm text-grey-dark mt-4">
