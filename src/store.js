@@ -1,5 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit'
+import create from 'zustand'
 
-export default configureStore({
-  reducer: {},
-})
+export const useStore = create((set) => ({
+    data: {},
+    setData: (json) => set({data:json}),
+    products: [],
+    addProduct: (json) => set({products:json}),
+}
+))

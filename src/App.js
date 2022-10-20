@@ -6,21 +6,25 @@ import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Register from './components/Register';
-import store from './store'
-import { Provider } from 'react-redux'
+import Admin from './components/Admin';
+import Cart from './components/Cart';
+
 
 function App() {
+
   return (
     <>
-      <Provider store={store}>
+     
         <Navbar />
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/admin" element={<Admin/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/cart" element={<Cart/>} />
         </Routes>
-      </Provider>
+      
     </>
   );
 }
