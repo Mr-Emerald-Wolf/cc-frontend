@@ -3,7 +3,7 @@ import React from 'react'
 export default function ProductItem(props) {
     return (
         <>
-            <div className="max-w-sm bg-coral rounded-lg shadow-lg">
+            <div className="max-w-sm rounded-lg shadow-lg">
                
                 <img src={props.imageURL} className="rounded-t-lg" alt="" />
         

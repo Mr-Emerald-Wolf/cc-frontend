@@ -30,11 +30,11 @@ export default function Products() {
 
     return (
         <>
-            <section className="bg-pastel min-h-screen">
-                <div className="p-[4rem]">
+            <section className="bg-slate-100 min-h-screen">
+                <div className="p-[2rem]">
                     <h1 className="New Products text-4xl text-lavender text-center font-bold">All Products</h1>
                 </div>
-                <div className="p-4 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mx-auto">
+                <div className="p-6 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mx-auto">
 
                     {!loading && data.map((element) => {
                          return (<ProductItem key={element.productName} description={element.productDesc} title={element.productName} price={element.productPrice} imageURL={element.imgUrl} />)

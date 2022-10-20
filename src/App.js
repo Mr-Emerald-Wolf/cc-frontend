@@ -4,15 +4,23 @@ import Landing from './components/Landing';
 import { Routes, Route } from "react-router-dom";
 import Navbar from './components/Navbar';
 import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import Register from './components/Register';
+import store from './store'
+import { Provider } from 'react-redux'
 
 function App() {
   return (
     <>
-      <Navbar/>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login/>} />
-      </Routes>
+      <Provider store={store}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </Provider>
     </>
   );
 }

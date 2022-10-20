@@ -5,10 +5,10 @@ export default function Navbar({ fixed }) {
     const [navbarOpen, setNavbarOpen] = React.useState(false);
     return (
         <>
-            <header className="bg-pastel z-50 top-0 md:sticky">
+            <header className="bg-white z-50 top-0 md:sticky">
                 <div className="container flex justify-between mx-auto">
                     <Link rel="noopener noreferrer" to="/" aria-label="Back to homepage" className="flex items-center p-1 md:font-bold text-3xl text-lavender">
-                        Q8
+                        ShopCart
                     </Link>
                     <div className="flex flex-grow items-center justify-end"></div>
                     <ul className="items-stretch hidden space-x-3 lg:flex">
