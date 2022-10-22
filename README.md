@@ -3,13 +3,13 @@
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
 </p>
 
-* ShopCart The latest shopping destination. Find the latest products and amazing deals today at ShopCart.
-> Features include:
-> Fetching all products from a backend (Postgres, ExpressJS).
-> Adding products to a Shopping Cart and displaying the total amount.
-> User Authentication with Registration and SignUp using JWT
-> Displaying user information
-> Dashboard for Admins for Inventory Management to Add/Delete Products 
+## ShopCart The latest shopping destination. Find the latest products and amazing deals today at ShopCart.
+# Features include:
+* Fetching all products from a backend (Postgres, ExpressJS).
+* Adding products to a Shopping Cart and displaying the total amount.
+* User Authentication with Registration and SignUp using JWT
+* Displaying user information
+* Dashboard for Admins for Inventory Management to Add/Delete Products 
 
 ## Install
 
