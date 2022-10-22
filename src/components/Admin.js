@@ -10,7 +10,7 @@ export default function Admin() {
 
   return (
     <>
-      <div className="min-h-screen p-2 bg-slate-100">
+      {(data.role === "admin") && <div className="min-h-screen p-2 bg-slate-100">
         <div class="overflow-hidden bg-white shadow sm:rounded-lg">
           <div class="px-4 py-5 sm:px-6">
             <h3 class="text-lg font-medium leading-6 text-gray-900">Admin</h3>
@@ -35,7 +35,10 @@ export default function Admin() {
         </div>
        
              <Inventory/>
-      </div>
+      </div>}
+      {!(data.role === "admin") && <div className="p-5">
+        <p className='text-2xl text-center'>Forbidden</p>
+      </div>}
 
     </>
   )

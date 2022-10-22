@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 // import { useNavigate } from 'react-router-dom';
 
-const Dashboard = () => {
+const Dashboard = (props) => {
     const [loading, setLoading] = useState(true);
     const setData = useStore((state) => state.setData)
     const data = useStore((state) => state.data)
@@ -50,8 +50,9 @@ const Dashboard = () => {
         axios(config)
             .then(function (response) {
                 setData(response.data.data);
-                console.log(data);
+                // console.log(data);
                 setLoading(false);
+                props.setData(response.data)
                 console.log(JSON.stringify(response.data));
             })
             .catch(function (error) {
@@ -89,13 +90,13 @@ const Dashboard = () => {
                         </dl>
                     </div>
                 </section>
-                <button type="submit" onClick={() => { navigate('/admin') }} class="m-3 group relative flex mx-auto justify-center rounded-md border border-transparent bg-pink-800 py-2 px-4 text-sm font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                {(data.role === "admin") && <button type="submit" onClick={() => { navigate('/admin') }} class="m-3 group relative flex mx-auto justify-center rounded-md border border-transparent bg-pink-800 py-2 px-4 text-sm font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                     {/* <!-- Heroicon name: mini/lock-closed --> */}
 
                 </span>
                 Admin Dashboard
-            </button>
+            </button>}
             </div>
             } 
         </>

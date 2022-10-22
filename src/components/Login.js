@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-export default function Login() {
+export default function Login(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     // const [msg, setMsg] = useState('');

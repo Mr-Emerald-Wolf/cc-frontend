@@ -1,16 +1,15 @@
-import React from "react";
+import {React, useState} from 'react';
 import { Link } from 'react-router-dom';
 import {useStore} from '../store'
 // import { useEffect, useState } from "react";
 
-export default function Navbar({ fixed }) {
+export default function Navbar(props) {
    
     const data = useStore((state) => state.data)
-   
     
-    
+    // console.log(props.data.data);
     // console.log(name);
-    const [navbarOpen, setNavbarOpen] = React.useState(false);
+    const [navbarOpen, setNavbarOpen] = useState(false);
     return (
         <>
             <header className="bg-white z-50 top-0 md:sticky">
@@ -22,7 +21,7 @@ export default function Navbar({ fixed }) {
                     <ul className="items-stretch hidden space-x-3 lg:flex">
                         <li className="flex">
                             {<Link rel="noopener noreferrer" to="/dashboard" className="flex items-center px-4 -mb-1 font-bold text-violet hover:text-lavender font-Kanit">{data.firstName}</Link>}
-                           { <Link rel="noopener noreferrer" to="/login" className="flex items-center px-4 -mb-1 font-bold text-violet hover:text-lavender font-Kanit">Sign In</Link>}
+                           {(props.data==null) && <Link rel="noopener noreferrer" to="/login" className="flex items-center px-4 -mb-1 font-bold text-violet hover:text-lavender font-Kanit">Sign In</Link>}
                         </li>
                         <li className="flex">
                             <a rel="noopener noreferrer" href="#tech" className="flex items-center px-4 -mb-1 text-violet hover:text-lavender tracking-wide font-light  font-Kanit">Orders</a>
