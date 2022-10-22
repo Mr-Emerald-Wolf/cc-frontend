@@ -30,34 +30,34 @@ export default function Products() {
 
     }, [])
     const Under1000 = () => {
-        setData(products);
-        let A = data.filter(e => e.productPrice < 1000)
-        console.log(A);
+        let A = products;
+        A = A.filter(e => e.productPrice < 1000)
+        // console.log(A);
         setData(A);
     }
     const Under2000 = () => {
-        setData(products);
-        let A = data.filter(e => e.productPrice < 2000)
-        console.log(A);
+        let A = products;
+        A = A.filter(e => e.productPrice < 2000)
+        // console.log(A);
         setData(A);
     }
     const Under3000 = () => {
-        setData(products);
-        let A = data.filter(e => e.productPrice < 3000)
-        console.log(A);
+        let A = products;
+        A = A.filter(e => e.productPrice < 3000)
+        // console.log(A);
         setData(A);
     }
     const Above3000 = () => {
-        setData(products);
-        let A = data.filter(e => e.productPrice > 3000)
-        console.log(A);
+        let A = products;
+        A = A.filter(e => e.productPrice > 3000)
+        // console.log(A);
         setData(A);
     }
     const search = (name) => {
         name.preventDefault();
-        setData(products);
-        let A = data.filter(e => e.productName === name)
-        console.log(A);
+        let A = products;
+        A = A.filter(e => e.productName === name)
+        // console.log(A);
         setData(A);
     }
     const Reset = () => {
@@ -93,10 +93,10 @@ export default function Products() {
                         {"<"} 1000
                     </button>
                     <button type="button" class="group relative flex mx-auto justify-center rounded-lg border border-transparent bg-pink-800 py-2 px-6 text-md font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={Under2000}>
-                        1000 - 2000
+                        Under 2000
                     </button>
                     <button type="button" class="group relative flex mx-auto justify-center rounded-lg border border-transparent bg-pink-800 py-2 px-6 text-md font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={Under3000}>
-                        2000 - 3000
+                        Under 3000
                     </button>
                     <button type="button" class="group relative flex mx-auto justify-center rounded-lg border border-transparent bg-pink-800 py-2 px-6 text-md font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={Above3000}>
                         3000 {'<'}
