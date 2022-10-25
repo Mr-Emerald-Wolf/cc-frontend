@@ -8,7 +8,9 @@ import toast, { Toaster } from 'react-hot-toast';
 export default function ProductItem(props) {
     // const addProduct = useStore((state) => state.addProduct)
     // const products = useStore((state) => state.products)
-    const deleteItem = () => toast(props.title+" deleted from Inventory");
+    const deleteItem = () => toast(props.title + " deleted from Inventory");
+    const err = (error) => toast(error);
+
 
 
     // addProduct(products)
@@ -32,14 +34,14 @@ export default function ProductItem(props) {
 
     }
     const Remove = async (e) => {
-
+        const token = localStorage.getItem('token');
 
         var config = {
             method: 'delete',
             url: `http://localhost:3001/product/deleteProduct/?productName=${props.title}`,
             headers: {
-                'Cookie': 'accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJBcnRodXIiLCJyb2xlIjpudWxsLCJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJpYXQiOjE2NjYyNzAzMDZ9.ri3pNgLnkGZZ9Pvdv4ZJCnWmCVO3-uMxY2kqDFVN3VE; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJBcnRodXIiLCJyb2xlIjpudWxsLCJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJpYXQiOjE2NjYyNzAzMDYsImV4cCI6MTY2NjM1NjcwNn0.hnvanRQsasalCDrO5alpRc34TsXTnYE9z3kQIWzfRaQ'
-            }
+                'authorization': `Bearer ${token}`,
+            },
         };
 
         axios(config)
@@ -50,6 +52,8 @@ export default function ProductItem(props) {
                 deleteItem();
             })
             .catch(function (error) {
+                err(error.message);
+                err("Failed To Remove. You are not an Admin.");
                 console.log(error);
             });
 
@@ -59,7 +63,7 @@ export default function ProductItem(props) {
     }
     return (
         <>
-             <Toaster />
+            <Toaster />
             <div className="max-w-sm rounded-lg shadow-lg bg-white">
 
                 <img src={props.imageURL} className="rounded-t-lg h-80" alt="" />

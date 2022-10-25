@@ -9,6 +9,7 @@ export default function Inventory() {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const addItem = () => toast(name + " added to Inventory");
+    const err = (error) => toast(error);
 
 
 
@@ -17,10 +18,13 @@ export default function Inventory() {
     }, [])
 
     const Reload = async (e) => {
+        const token = localStorage.getItem('token');
         var config = {
             method: 'get',
             url: 'http://localhost:3001/product/getProduct',
-            headers: {}
+            headers: { 
+                'authorization': `Bearer ${token}`, 
+              }
         };
 
         axios(config)
@@ -45,6 +49,7 @@ export default function Inventory() {
 
         e.preventDefault();
         try {
+            const token = localStorage.getItem('token');
             var data = JSON.stringify({
                 "productName": name,
                 "productDesc": desc,
@@ -55,9 +60,9 @@ export default function Inventory() {
             var config = {
                 method: 'post',
                 url: 'http://localhost:3001/product/createProduct',
-                headers: {
+                headers: { 
                     'Content-Type': 'application/json',
-                    'Cookie': 'accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJBcnRodXIiLCJyb2xlIjpudWxsLCJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJpYXQiOjE2NjYyNzAzMDZ9.ri3pNgLnkGZZ9Pvdv4ZJCnWmCVO3-uMxY2kqDFVN3VE; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJBcnRodXIiLCJyb2xlIjpudWxsLCJlbWFpbCI6ImFiY0BnbWFpbC5jb20iLCJpYXQiOjE2NjYyNzAzMDYsImV4cCI6MTY2NjM1NjcwNn0.hnvanRQsasalCDrO5alpRc34TsXTnYE9z3kQIWzfRaQ'
+                    'authorization': `Bearer ${token}`, 
                 },
                 data: data
             };
@@ -69,6 +74,8 @@ export default function Inventory() {
                     addItem();
                 })
                 .catch(function (error) {
+                    err(error.message);
+                    err("Failed To Add. You are not an Admin.");
                     console.log(error);
                 });
 

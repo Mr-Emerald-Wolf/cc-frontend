@@ -1,7 +1,7 @@
 import create from 'zustand'
 
 export const useStore = create((set) => ({
-    data: {},
+    data: [],
     setData: (json) => set({data:json}),
     products: [],
     addProduct: (json) => set({products:json}),

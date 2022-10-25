@@ -6,8 +6,10 @@ import { useNavigate } from 'react-router-dom';
 
 // import { useNavigate } from 'react-router-dom';
 
-const Dashboard = (props) => {
+const Dashboard = () => {
     const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState([]);
+
     const setData = useStore((state) => state.setData)
     const data = useStore((state) => state.data)
     let navigate = useNavigate();
@@ -20,25 +22,10 @@ const Dashboard = (props) => {
         getUsers();
     },[]);
 
-    const token = localStorage.getItem('token');
     
-    // const apiUrl = 'http://localhost:3001';
-    // axios.interceptors.request.use(
-    //     config => {
-    //         const { origin } = new URL(config.url);
-    //         const allowedOrigins = [apiUrl];
-    //         // console.log(token);
-    //         if (allowedOrigins.includes(origin)) {
-    //             config.headers.authorization = `Bearer ${token}`;
-    //         }
-    //         return config;
-    //     },
-    //     error => {
-    //         return Promise.reject(error);
-    //     }
-    // );
-
+    
     const getUsers = async () => {
+        const token = localStorage.getItem('token');
         var config = {
             method: 'get',
             url: 'http://localhost:3001/users/finduser',
@@ -50,10 +37,9 @@ const Dashboard = (props) => {
         axios(config)
             .then(function (response) {
                 setData(response.data.data);
-                // console.log(data);
                 setLoading(false);
-                props.setData(response.data)
-                console.log(JSON.stringify(response.data));
+                setUser(response.data.data)
+                console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
@@ -73,15 +59,15 @@ const Dashboard = (props) => {
                         <dl>
                             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500">Full name</dt>
-                                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{!loading && data.firstName + " " + data.lastName}</dd>
+                                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{!loading && user.firstName + " " + user.lastName}</dd>
                             </div>
                             <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500">Role</dt>
-                                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{data.role}</dd>
+                                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{user.role}</dd>
                             </div>
                             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500">Email address</dt>
-                                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{data.email}</dd>
+                                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{user.email}</dd>
                             </div>
                             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500">Address</dt>

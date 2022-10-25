@@ -5,8 +5,10 @@ import ProductItem from './ProductItem';
 export default function Products() {
     const [data, setData] = useState(null);
     const [products, setProducts] = useState(null);
-    const [name, setName] = useState('');
     const [loading, setLoading] = useState(true);
+    const [query, setQuery] = useState();
+
+
 
     useEffect(() => {
 
@@ -29,36 +31,27 @@ export default function Products() {
             });
 
     }, [])
-    const Under1000 = () => {
+    const Filter = (price) => {
         let A = products;
-        A = A.filter(e => e.productPrice < 1000)
+        A = A.filter(e => e.productPrice < price)
         // console.log(A);
         setData(A);
     }
-    const Under2000 = () => {
-        let A = products;
-        A = A.filter(e => e.productPrice < 2000)
-        // console.log(A);
-        setData(A);
-    }
-    const Under3000 = () => {
-        let A = products;
-        A = A.filter(e => e.productPrice < 3000)
-        // console.log(A);
-        setData(A);
-    }
+
     const Above3000 = () => {
         let A = products;
         A = A.filter(e => e.productPrice > 3000)
         // console.log(A);
         setData(A);
     }
-    const search = (name) => {
-        name.preventDefault();
-        let A = products;
-        A = A.filter(e => e.productName === name)
-        // console.log(A);
-        setData(A);
+    const search = (e) => {
+        e.preventDefault();
+        const items = products.filter(item => {
+            return item.productName.toLowerCase().includes(query.toLowerCase())
+        })
+
+        setData(items);
+
     }
     const Reset = () => {
         setData(products);
@@ -70,9 +63,9 @@ export default function Products() {
             <section className='flex flex-col items-center px-6 lg:px-32 py-5 bg-slate-100 justify-center '>
                 <div className="pt-2 relative mx-auto text-gray-600">
                     <div >
-                        <input id="search" value={name} onChange={(e) => setName(e.target.value)} className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                        <input id="search" value={query} onChange={(e) => setQuery(e.target.value)} className="border-2 border-gray-300 bg-white h-10 px-5 pr-16  rounded-lg text-md focus:outline-none"
                             type="search" name="url" placeholder="Search" />
-                        <button type="submit"  onClick={search} className="absolute right-0 top-0 mt-5 mr-4" >
+                        <button type="submit" onClick={search} className="absolute right-0 top-0 mt-5 mr-4" >
                             <svg className="text-gray-600 h-4 w-4 fill-current"
                                 version="1.1" id="Capa_1" x="0px" y="0px"
                                 viewBox="0 0 56.966 56.966"
@@ -88,20 +81,41 @@ export default function Products() {
                 <div className="p-[2rem]">
                     <h1 className="New Products text-4xl text-lavender text-center font-bold">All Products</h1>
                 </div>
-                <div className="grid grid-cols-5">
-                    <button type="button" class="group relative flex mx-auto justify-center rounded-lg border border-transparent bg-pink-800 py-2 px-6 text-md font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={Under1000}>
+                <div className="hidden md:grid grid-cols-5">
+                    <button type="button" class="group relative flex mx-auto justify-center rounded-lg border border-transparent bg-pink-800 py-2 px-6 text-md font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={() => Filter(1000)}>
                         {"<"} 1000
                     </button>
-                    <button type="button" class="group relative flex mx-auto justify-center rounded-lg border border-transparent bg-pink-800 py-2 px-6 text-md font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={Under2000}>
+                    <button type="button" class="group relative flex mx-auto justify-center rounded-lg border border-transparent bg-pink-800 py-2 px-6 text-md font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={() => Filter(2000)}>
                         Under 2000
                     </button>
-                    <button type="button" class="group relative flex mx-auto justify-center rounded-lg border border-transparent bg-pink-800 py-2 px-6 text-md font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={Under3000}>
+                    <button type="button" class="group relative flex mx-auto justify-center rounded-lg border border-transparent bg-pink-800 py-2 px-6 text-md font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={() => Filter(3000)}>
                         Under 3000
                     </button>
                     <button type="button" class="group relative flex mx-auto justify-center rounded-lg border border-transparent bg-pink-800 py-2 px-6 text-md font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={Above3000}>
                         3000 {'<'}
                     </button>
                     <button type="button" class="group relative flex mx-auto justify-center rounded-lg border border-transparent bg-pink-800 py-2 px-6 text-md font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={Reset}>
+                        Reset Filters
+                    </button>
+                </div>
+                <div class="grid md:hidden grid-cols-4 gap-0 p-2">
+                    <button type="button" class="group relative flex mx-auto justify-center  border border-transparent bg-pink-800 py-1 px-6 rounded-l font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={() => Filter(1000)}>
+                        Under 1000
+                    </button>
+                    <button type="button" class="group relative flex mx-auto justify-center  border border-transparent bg-pink-800 py-1 px-6  font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={() => Filter(2000)}>
+                        Under 2000
+                    </button>
+                    <button type="button" class="group relative flex mx-auto justify-center  border border-transparent bg-pink-800 py-1 px-6  font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={() => Filter(3000)}>
+                        Under 3000
+                    </button>
+                    <button type="button" class="group relative flex mx-auto justify-center  border border-transparent bg-pink-800 py-1 px-6 rounded-r font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={Above3000}>
+                        Above 3000
+                    </button>
+                   
+                </div>
+                <div className="grid-cols-1 grid md:hidden">
+                
+                    <button type="button" class="group relative flex mx-auto rounded justify-center border border-transparent bg-pink-800 py-2 px-6 text-md font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={Reset}>
                         Reset Filters
                     </button>
                 </div>

@@ -2,18 +2,25 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useStore } from '../store'
+import toast, { Toaster } from 'react-hot-toast';
+
 
 
 
 export default function Login(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const [msg, setMsg] = useState('');
+    const setData = useStore((state) => state.setData)
+    const err = (err) => toast(err);
+
     let navigate = useNavigate();
+
+    setData([])
     localStorage.clear();
 
     const Auth = async (e) => {
-       
+
         e.preventDefault();
         try {
             var data = JSON.stringify({
@@ -34,12 +41,15 @@ export default function Login(props) {
                 .then(function (response) {
                     localStorage.setItem('token', response.data.accessToken);
                     console.log(JSON.stringify(response.data));
+                    navigate("/dashboard");
                 })
                 .catch(function (error) {
+                    err(error.message);
+                    err("Failed To Login");
                     console.log(error);
                 });
 
-            navigate("/dashboard");
+
         } catch (error) {
             if (error.response) {
                 console.log(error.response.data.msg);
@@ -50,10 +60,11 @@ export default function Login(props) {
     return (
 
         <>
+            <Toaster />
             <div class="flex min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                 <div class="w-full max-w-md space-y-8">
                     <div>
-                        
+
                         <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold text-black text-center">
                             ShopCart
                         </h1>
@@ -95,12 +106,12 @@ export default function Login(props) {
                                 </span>
                                 Sign in
                             </button>
-                            <button type="submit" onClick={()=>{navigate('/register')}} class="group relative flex w-full justify-center rounded-md border border-transparent bg-pink-800 py-2 px-4 text-sm font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                            <button type="submit" onClick={() => { navigate('/register') }} class="group relative flex w-full justify-center rounded-md border border-transparent bg-pink-800 py-2 px-4 text-sm font-medium text-white hover:bg-lavender focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                                 <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                                     {/* <!-- Heroicon name: mini/lock-closed --> */}
 
                                 </span>
-                               Register
+                                Register
                             </button>
                         </div>
                     </form>

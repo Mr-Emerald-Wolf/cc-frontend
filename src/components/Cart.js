@@ -4,32 +4,34 @@ import CartItem from './CartItem'
 import { Link } from 'react-router-dom';
 
 
+
 export default function Cart() {
     const products = useStore((state) => state.products)
     let total = 0;
-    products.map((e)=>{total = total + parseInt(e.productPrice);return{}})
+    products.map((e) => { total = total + parseInt(e.productPrice); return {} })
     
+
     return (
         <>
-
+         
             <div class=" mx-auto mt-10 p-4 min-h-screen bg-slate-100">
-                <div class="flex shadow-md my-10 bg-white">
-                    <div class="w-3/4 px-10 py-10">
+                <div class="shadow-md my-10 bg-white grid md:grid-cols-4 grid-flow-row">
+                    <div class="md:col-span-3 px-10 py-10">
                         <div class="flex justify-between border-b pb-8">
                             <h1 class="font-semibold text-2xl">Shopping Cart</h1>
                             <h2 class="font-semibold text-2xl">{products.length} Items</h2>
                         </div>
-                        <div class="flex mt-10 mb-5">
+                        <div class="grid grid-cols-2 mt-10 mb-5">
                             <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
 
                             <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">Price</h3>
 
                         </div>
                         {products.map((element) => {
-                         return (<CartItem key={element.productName} description={element.productDesc} title={element.productName} price={element.productPrice} imageURL={element.imgUrl} />)
-                    })}
-                        
-                          
+                            return (<CartItem key={element.productName} description={element.productDesc} title={element.productName} price={element.productPrice} imageURL={element.imgUrl} />)
+                        })}
+
+
 
                         <Link to="/" class="flex font-semibold text-indigo-600 text-sm mt-10">
 
@@ -38,7 +40,7 @@ export default function Cart() {
                         </Link>
                     </div>
 
-                    <div id="summary" class="w-1/4 px-8 py-10">
+                    <div id="summary" className="md:p-3 px-10 md:py-10">
                         <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
                         <div class="flex justify-between mt-10 mb-5">
                             <span class="font-semibold text-sm uppercase">Items {products.length}</span>
