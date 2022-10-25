@@ -21,7 +21,7 @@ export default function Inventory() {
         const token = localStorage.getItem('token');
         var config = {
             method: 'get',
-            url: 'http://localhost:3001/product/getProduct',
+            url: `${process.env.REACT_APP_API}/product/getProduct`,
             headers: { 
                 'authorization': `Bearer ${token}`, 
               }
@@ -59,7 +59,7 @@ export default function Inventory() {
 
             var config = {
                 method: 'post',
-                url: 'http://localhost:3001/product/createProduct',
+                url: `${process.env.REACT_APP_API}/product/createProduct`,
                 headers: { 
                     'Content-Type': 'application/json',
                     'authorization': `Bearer ${token}`, 

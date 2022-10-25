@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 import { useStore } from '../store'
 import { useNavigate } from 'react-router-dom';
@@ -18,34 +18,34 @@ const Dashboard = () => {
     // let navigate = useNavigate();
 
 
-    useEffect(() => {
-        getUsers();
-    },[]);
-
+    
     
     
     const getUsers = async () => {
         const token = localStorage.getItem('token');
+        const url = process.env.REACT_APP_API + '/users/finduser';
+        
         var config = {
             method: 'get',
-            url: 'http://localhost:3001/users/finduser',
+            url: url,
             headers: { 
                 'authorization': `Bearer ${token}`, 
-              }
+            }
         };
-
+        
         axios(config)
-            .then(function (response) {
-                setData(response.data.data);
-                setLoading(false);
-                setUser(response.data.data)
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        .then(function (response) {
+            setData(response.data.data);
+            setLoading(false);
+            setUser(response.data.data)
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
-
+    
+    getUsers();
     return (
         <>
 

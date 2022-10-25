@@ -28,7 +28,7 @@ export default function Register() {
 
             var config = {
                 method: 'post',
-                url: 'http://localhost:3001/users/createUser',
+                url: `${process.env.REACT_APP_API}/users/createUser`,
                 headers: {
                     'Content-Type': 'application/json'
                 },

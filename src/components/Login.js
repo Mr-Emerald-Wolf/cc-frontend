@@ -30,7 +30,7 @@ export default function Login(props) {
 
             var config = {
                 method: 'post',
-                url: 'http://localhost:3001/users/login',
+                url: `${process.env.REACT_APP_API}/users/login`,
                 headers: {
                     'Content-Type': 'application/json'
                 },

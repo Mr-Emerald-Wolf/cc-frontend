@@ -14,7 +14,7 @@ export default function Products() {
 
         var config = {
             method: 'get',
-            url: 'http://localhost:3001/product/getProduct',
+            url: `${process.env.REACT_APP_API}/product/getProduct`,
             headers: {}
         };
 

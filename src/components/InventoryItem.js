@@ -18,7 +18,7 @@ export default function ProductItem(props) {
     const Reload = async (e) => {
         var config = {
             method: 'get',
-            url: 'http://localhost:3001/product/getProduct',
+            url: `${process.env.REACT_APP_API}/product/getProduct`,
             headers: {}
         };
 
@@ -38,7 +38,7 @@ export default function ProductItem(props) {
 
         var config = {
             method: 'delete',
-            url: `http://localhost:3001/product/deleteProduct/?productName=${props.title}`,
+            url: `${process.env.REACT_APP_API}/product/deleteProduct/?productName=${props.title}`,
             headers: {
                 'authorization': `Bearer ${token}`,
             },
