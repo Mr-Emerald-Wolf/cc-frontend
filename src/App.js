@@ -8,6 +8,7 @@ import Dashboard from './components/Dashboard';
 import Register from './components/Register';
 import Admin from './components/Admin';
 import Cart from './components/Cart';
+import Info from './components/Info';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard/>} />
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart/>} />
+          <Route path="/product/:id" element={<Info />} />
         </Routes>
       
     </>

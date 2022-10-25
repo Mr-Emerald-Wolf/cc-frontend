@@ -122,7 +122,7 @@ export default function Products() {
                 <div className="p-6 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mx-auto">
 
                     {!loading && data.map((element) => {
-                        return (<ProductItem key={element.productName} description={element.productDesc} title={element.productName} price={element.productPrice} imageURL={element.imgUrl} />)
+                        return (<ProductItem key={element.productName} id={element.id} description={element.productDesc} title={element.productName} price={element.productPrice} imageURL={element.imgUrl} />)
                     })}
 
                 </div>
